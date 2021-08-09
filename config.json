@@ -1,0 +1,14 @@
+{
+    "database": {
+        "username": "postgres",
+        "password": "postgres",
+        "database": "cherrytv_dev",
+        "host": "127.0.0.1",
+        "port": 5432,
+        "logging": true,
+        "dialect": "postgres",
+        "sync": {
+            "force": true
+        }
+    }
+}

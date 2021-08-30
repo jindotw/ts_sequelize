@@ -1,6 +1,6 @@
-import {AutoIncrement, Column, DataType, HasOne, Model, PrimaryKey, Table} from "sequelize-typescript";
-import {BroadcastId} from "./dataTypes";
-import {BroadcastScoreEntity} from "./broadcastScoreEntity";
+import { AutoIncrement, Column, DataType, HasOne, Model, PrimaryKey, Table } from "sequelize-typescript";
+import { BroadcastId } from "./dataTypes";
+import { BroadcastScoreEntity } from "./broadcastScoreEntity";
 
 @Table({
   tableName: "broadcast_test",
@@ -21,6 +21,6 @@ export class BroadcastEntity extends Model<BroadcastEntity> {
   @Column(DataType.DATE)
   public updatedAt!: Date;
 
-  @HasOne(() => BroadcastScoreEntity, "id")
+  @HasOne(() => BroadcastScoreEntity, { foreignKey: "broadcast_id", sourceKey: "id" })
   public scores!: BroadcastScoreEntity;
 }

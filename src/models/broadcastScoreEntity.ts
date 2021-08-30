@@ -1,6 +1,5 @@
-import {BelongsTo, Column, DataType, Model, PrimaryKey, Table} from "sequelize-typescript";
-import {BroadcastId} from "./dataTypes";
-import {BroadcastEntity} from "./broadcastEntity";
+import { Column, DataType, Model, PrimaryKey, Table } from "sequelize-typescript";
+import { BroadcastId } from "./dataTypes";
 
 @Table({
   tableName: "broadcast_scores_test",
@@ -9,11 +8,11 @@ import {BroadcastEntity} from "./broadcastEntity";
 export class BroadcastScoreEntity extends Model<BroadcastScoreEntity> {
   @PrimaryKey
   @Column(DataType.INTEGER)
-  public id!: BroadcastId;
+  public broadcast_id!: BroadcastId;
 
   @Column(DataType.INTEGER)
-  public score!: number;
+  public total_score!: number;
 
-  @BelongsTo(() => BroadcastEntity, "id")
-  public broadcasts!: BroadcastEntity;
+  // @BelongsTo(() => BroadcastEntity, "id")
+  // public broadcasts!: BroadcastEntity;
 }

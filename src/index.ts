@@ -19,16 +19,17 @@ import {BroadcastScoreEntity} from "./models/broadcastScoreEntity";
 
   const items = await BroadcastEntity.findAll({
     include: [{
-      model:BroadcastScoreEntity,
+      model: BroadcastScoreEntity,
+      attributes: [],
       required: false,
     }],
     order: [
-      [Sequelize.literal("coalesce(scores.score, 0)"), "DESC"],
-      ["id", "DESC"],
+      [Sequelize.literal("coalesce(scores.total_score, 0)"), "DESC"],
+      ["id", "ASC"],
     ]
   });
   items.forEach(b => {
-    console.log(`${b.id} => ${b.title}, ${b.scores?.score}`);
+    console.log(`${b.id} => ${b.title} (${b.scores?.total_score})`);
   });
   await conn.close();
 })();

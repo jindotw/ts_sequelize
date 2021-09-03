@@ -17,14 +17,15 @@ import {BroadcastScoreEntity} from "./models/broadcastScoreEntity";
   });
   conn.addModels([BroadcastEntity, BroadcastScoreEntity]);
 
+  const orderScore = Sequelize.literal("coalesce(scores.total_score, 0) desc");
   const items = await BroadcastEntity.findAll({
     include: [{
       model: BroadcastScoreEntity,
-      attributes: [],
+      attributes: ['total_score'],
       required: false,
     }],
     order: [
-      [Sequelize.literal("coalesce(scores.total_score, 0)"), "DESC"],
+      orderScore,
       ["id", "ASC"],
     ]
   });
